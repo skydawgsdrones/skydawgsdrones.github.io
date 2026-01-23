@@ -11,8 +11,6 @@
 
   <style>
     :root{
-      --cream:#F6F1E6;
-      --cream-2:#FFF8EA;
       --green:#1F5F3A;
       --green-2:#2C7A4B;
       --text:#163325;
@@ -23,12 +21,13 @@
       --radius: 24px;
       --radiusSm: 18px;
 
-      /* transparency controls */
-      --panelAlphaTop: .78;
-      --panelAlphaBot: .72;
-      --glassAlpha: .52;
-      --glassAlphaHover: .62;
-      --border: rgba(255,255,255,.22);
+      /* TRUE transparency controls (lower = more see-through) */
+      --panelTop: 0.52;
+      --panelBot: 0.46;
+      --glass:    0.44;
+      --glassHover:0.54;
+
+      --border: rgba(255,255,255,.20);
     }
 
     *{box-sizing:border-box}
@@ -41,7 +40,7 @@
       overflow-x:hidden;
     }
 
-    /* ========= Full-screen Vimeo background ========= */
+    /* ===== Full-screen Vimeo background ===== */
     .bg{
       position:fixed;
       inset:0;
@@ -53,7 +52,7 @@
       position:absolute;
       top:50%;
       left:50%;
-      width:177.78vh;   /* 16:9 cover trick */
+      width:177.78vh;
       height:100vh;
       min-width:100vw;
       min-height:56.25vw;
@@ -61,28 +60,24 @@
       border:0;
       pointer-events:none;
     }
-
-    /* More cinematic contrast + readable text */
     .bg::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 50% 30%, rgba(0,0,0,.08), rgba(0,0,0,.78)),
-        linear-gradient(to bottom, rgba(0,0,0,.32), rgba(0,0,0,.78));
+        radial-gradient(900px 520px at 50% 30%, rgba(0,0,0,.06), rgba(0,0,0,.78)),
+        linear-gradient(to bottom, rgba(0,0,0,.26), rgba(0,0,0,.80));
       z-index:1;
       pointer-events:none;
     }
 
-    /* ========= Layout ========= */
+    /* ===== Layout ===== */
     .wrap{
       min-height:100vh;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
-
-      /* MORE video visible around the panel */
       padding:64px 18px 32px;
       gap:18px;
     }
@@ -99,35 +94,36 @@
       letter-spacing:.25px;
     }
 
-    /* Narrower + more transparent "glass cream" panel */
+    /* ===== The panel (NOW ACTUALLY TRANSPARENT) ===== */
     .panel{
-      width:min(860px, 78vw); /* narrower = more video left/right */
-      background:linear-gradient(
+      width:min(860px, 78vw);
+      background: linear-gradient(
         180deg,
-        rgba(255,248,234,var(--panelAlphaTop)),
-        rgba(246,241,230,var(--panelAlphaBot))
+        rgba(255,248,234,var(--panelTop)),
+        rgba(246,241,230,var(--panelBot))
       );
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow: var(--panelShadow);
       overflow:hidden;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+
+      /* blur the video behind it (still see-through) */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    /* Mobile: keep some video border, not full-screen cream */
     @media (max-width: 920px){
       .panel{ width:min(740px, 90vw); }
       .outsideHint{ width:min(740px, 90vw); }
       .wrap{ padding:44px 14px 26px; }
     }
     @media (max-width: 520px){
-      .panel{ width:92vw; }   /* still not 100% */
+      .panel{ width:92vw; }
       .outsideHint{ width:92vw; }
       .wrap{ padding:34px 12px 22px; }
     }
 
-    /* ========= Header ========= */
+    /* ===== Header ===== */
     .top{
       padding:22px 22px 10px;
       display:flex;
@@ -148,13 +144,15 @@
       width:66px;
       height:66px;
       border-radius:18px;
-      background:rgba(255,255,255,.62);
-      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.40);
+      border:1px solid rgba(255,255,255,.24);
       display:grid;
       place-items:center;
       overflow:hidden;
       flex:0 0 auto;
       box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .logo img{
       width:100%;
@@ -175,7 +173,7 @@
       margin:6px 0 0;
       font-size:.93rem;
       font-weight:800;
-      color:rgba(22,51,37,.78);
+      color:rgba(22,51,37,.80);
     }
 
     .ctaRow{
@@ -194,35 +192,34 @@
       padding:12px 14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.24);
-      background:rgba(255,255,255,.66);
+      background:rgba(255,255,255,.42);
       color:var(--text);
       font-weight:900;
       text-decoration:none;
       transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
       box-shadow: 0 14px 30px rgba(0,0,0,.18);
       white-space:nowrap;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .btn:hover{
       transform:translateY(-1px);
-      background:rgba(255,255,255,.78);
+      background:rgba(255,255,255,.56);
       box-shadow: 0 20px 42px rgba(0,0,0,.26);
     }
 
     .btnPrimary{
-      background:linear-gradient(180deg, rgba(44,122,75,.95), rgba(31,95,58,.98));
+      background:linear-gradient(180deg, rgba(44,122,75,.92), rgba(31,95,58,.96));
       color:#fff;
       border-color:rgba(255,255,255,.20);
       box-shadow: 0 20px 46px rgba(0,0,0,.28);
     }
     .btnPrimary:hover{
-      transform:translateY(-1px);
       box-shadow: 0 26px 60px rgba(0,0,0,.34);
       filter:saturate(1.04);
     }
 
-    /* ========= Hero ========= */
+    /* ===== Hero ===== */
     .hero{
       padding:8px 22px 18px;
       display:grid;
@@ -235,15 +232,17 @@
       .ctaRow{justify-content:flex-start}
     }
 
-    .headline{
-      padding:16px 16px 14px;
+    .headline,
+    .quickFacts{
       border-radius:var(--radiusSm);
-      background:rgba(255,255,255,var(--glassAlpha));
+      background:rgba(255,255,255,var(--glass));
       border:1px solid rgba(255,255,255,.22);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 16px 34px rgba(0,0,0,.14);
     }
+
+    .headline{ padding:16px 16px 14px; }
     .headline h2{
       margin:0;
       font-size:2.35rem;
@@ -257,23 +256,12 @@
       margin:10px 0 0;
       font-size:1.05rem;
       font-weight:800;
-      color:rgba(22,51,37,.80);
+      color:rgba(22,51,37,.82);
       line-height:1.35;
     }
 
-    .quickFacts{
-      padding:16px;
-      border-radius:var(--radiusSm);
-      background:rgba(255,255,255,calc(var(--glassAlpha) - .06));
-      border:1px solid rgba(255,255,255,.22);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 16px 34px rgba(0,0,0,.14);
-    }
-    .muted{
-      color:rgba(22,51,37,.70);
-      font-weight:800;
-    }
+    .quickFacts{ padding:16px; }
+    .muted{ color:rgba(22,51,37,.72); font-weight:800; }
     .pillRow{
       display:flex;
       flex-wrap:wrap;
@@ -290,7 +278,7 @@
       border-radius:999px;
     }
 
-    /* ========= Services ========= */
+    /* ===== Services ===== */
     .services{padding:0 22px 22px}
     .services h3{
       margin:0 0 12px;
@@ -310,10 +298,9 @@
       .grid{grid-template-columns:1fr}
     }
 
-    /* Badass service cards */
     .card{
       border-radius:22px;
-      background:rgba(255,255,255,calc(var(--glassAlpha) - .02));
+      background:rgba(255,255,255,var(--glass));
       border:1px solid rgba(255,255,255,.22);
       padding:14px 14px 12px;
       text-decoration:none;
@@ -325,11 +312,9 @@
       box-shadow: var(--cardShadow);
       position:relative;
       overflow:hidden;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
-
-    /* subtle sheen */
     .card::before{
       content:"";
       position:absolute;
@@ -340,10 +325,9 @@
       transform: rotate(18deg);
       pointer-events:none;
     }
-
     .card:hover{
       transform:translateY(-2px);
-      background:rgba(255,255,255,var(--glassAlphaHover));
+      background:rgba(255,255,255,var(--glassHover));
       border-color:rgba(255,255,255,.34);
       box-shadow: 0 26px 70px rgba(0,0,0,.30);
     }
@@ -357,6 +341,8 @@
       display:grid;
       place-items:center;
       flex:0 0 auto;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .icon svg{
       width:22px;
@@ -381,23 +367,23 @@
       display:block;
       font-size:.95rem;
       font-weight:800;
-      color:rgba(22,51,37,.80);
+      color:rgba(22,51,37,.82);
       line-height:1.35;
       margin-top:6px;
     }
 
-    /* ========= Footer ========= */
+    /* ===== Footer ===== */
     footer{
       padding:14px 22px 18px;
       border-top:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.40);
+      background:rgba(255,255,255,.34);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:14px;
       flex-wrap:wrap;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
     footer .left{display:flex;flex-direction:column;gap:6px}
     footer .right{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
@@ -463,7 +449,6 @@
         <div class="grid">
           <a class="card" href="aerial-photos.html">
             <div class="icon" aria-hidden="true">
-              <!-- Camera -->
               <svg viewBox="0 0 24 24"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><path d="M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
             </div>
             <div>
@@ -474,7 +459,6 @@
 
           <a class="card" href="property-showcase.html">
             <div class="icon" aria-hidden="true">
-              <!-- Home -->
               <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
             </div>
             <div>
@@ -485,7 +469,6 @@
 
           <a class="card" href="twilight.html">
             <div class="icon" aria-hidden="true">
-              <!-- Sun -->
               <svg viewBox="0 0 24 24"><path d="M12 4V2"/><path d="M12 22v-2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
             </div>
             <div>
@@ -496,7 +479,6 @@
 
           <a class="card" href="dronie-combos.html">
             <div class="icon" aria-hidden="true">
-              <!-- Rocket -->
               <svg viewBox="0 0 24 24"><path d="M5 19c4-1 7-4 8-8 2-4 7-7 10-7 0 3-3 8-7 10-4 1-7 4-8 8-2 0-3 0-3-3z"/><path d="M7 17l-3 3"/><path d="M14 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
             </div>
             <div>
@@ -507,7 +489,6 @@
 
           <a class="card" href="special-events.html">
             <div class="icon" aria-hidden="true">
-              <!-- Sparkles -->
               <svg viewBox="0 0 24 24"><path d="M12 2l1.2 4.2L17 7.5l-3.8 1.3L12 13l-1.2-4.2L7 7.5l3.8-1.3z"/><path d="M19 12l.8 2.8L22 16l-2.2.7L19 19l-.8-2.3L16 16l2.2-.7z"/><path d="M5 13l.8 2.8L8 17l-2.2.7L5 20l-.8-2.3L2 17l2.2-.7z"/></svg>
             </div>
             <div>
@@ -518,7 +499,6 @@
 
           <a class="card" href="search-rescue.html">
             <div class="icon" aria-hidden="true">
-              <!-- Crosshair -->
               <svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
             </div>
             <div>
