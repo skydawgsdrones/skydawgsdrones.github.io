@@ -25,7 +25,6 @@
       overflow-x:hidden;
     }
 
-    /* ===== Fullscreen Video Background ===== */
     .bg{
       position:fixed;
       inset:0;
@@ -55,7 +54,6 @@
       pointer-events:none;
     }
 
-    /* ===== Layout ===== */
     .wrap{
       min-height:100vh;
       display:flex;
@@ -64,7 +62,6 @@
       padding:20px 16px 36px;
     }
 
-    /* LOWER + WIDER PANEL */
     .panel{
       width:min(960px, 94vw);
       background: rgba(255,255,255,0.14);
@@ -72,19 +69,10 @@
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      margin-bottom:6vh;   /* LOWER than before */
+      margin-bottom:6vh;
       overflow:hidden;
     }
 
-    @media (max-width:600px){
-      .panel{
-        width:94vw;
-        margin-bottom:5vh;
-      }
-    }
-
-    /* ===== Top Bar ===== */
     .top{
       padding:14px 18px 10px;
       display:flex;
@@ -108,7 +96,6 @@
       display:grid;
       place-items:center;
       overflow:hidden;
-      backdrop-filter: blur(12px);
     }
     .logo img{
       width:100%;
@@ -128,7 +115,6 @@
       opacity:.85;
     }
 
-    /* ===== Main Content ===== */
     .content{
       padding:10px 22px 12px;
     }
@@ -138,7 +124,6 @@
       font-size:1.7rem;
       font-weight:900;
       letter-spacing:-.5px;
-      line-height:1.05;
     }
 
     .subtitle{
@@ -157,7 +142,6 @@
       opacity:.8;
     }
 
-    /* ===== Footer ===== */
     footer{
       padding:12px 18px 14px;
       border-top:1px solid rgba(255,255,255,.14);
@@ -190,7 +174,6 @@
       color:#fff;
       font-weight:900;
       text-decoration:none;
-      backdrop-filter: blur(14px);
       transition:background .15s ease, transform .15s ease;
     }
     .btn:hover{
@@ -207,7 +190,6 @@
 </head>
 
 <body>
-  <!-- Background Video -->
   <div class="bg">
     <video autoplay muted loop playsinline preload="auto">
       <source src="assets/videos/twilight.mp4" type="video/mp4">
@@ -216,7 +198,6 @@
 
   <div class="wrap">
     <main class="panel">
-      <!-- Top -->
       <section class="top">
         <div class="brand">
           <div class="logo">
@@ -229,7 +210,6 @@
         </div>
       </section>
 
-      <!-- Content -->
       <section class="content">
         <h2 class="title">Twilight / Golden Hour</h2>
         <p class="subtitle">
@@ -241,7 +221,6 @@
         </p>
       </section>
 
-      <!-- Footer -->
       <footer>
         <div class="left">
           <span>Contact</span>
@@ -251,8 +230,9 @@
 
         <div class="right">
           <a class="btn" href="index.html">Back to Services</a>
-          <a class="btn" href="https://www.instagram.com/sky.dawgs?igsh=MTI5a2VpamdvMDBjdw==" target="_blank">Instagram</a>
+          <a class="btn" href="https://www.instagram.com/sky.dawgs" target="_blank">Instagram</a>
           <a class="btn" href="https://vimeo.com/user244846590" target="_blank">Vimeo</a>
+          <a class="btn" href="https://www.facebook.com/" target="_blank">Facebook</a>
         </div>
       </footer>
     </main>
