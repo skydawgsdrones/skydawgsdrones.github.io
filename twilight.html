@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Twilight / Golden Hour • SkyDawgs Drone Services</title>
+  <title>Twilight / Golden Hour | SkyDawgs Drone Services</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,58 +12,64 @@
   <style>
     :root{
       --green:#1F5F3A;
-      --radius:24px;
       --shadow: 0 26px 90px rgba(0,0,0,.38);
-      --cardShadow: 0 18px 45px rgba(0,0,0,.22);
+      --radius:24px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
       font-family:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:#000;
+      color:#fff;
       overflow-x:hidden;
-      color:rgba(255,255,255,.92);
     }
 
-    /* Full-screen local MP4 background */
+    /* Full-screen video background */
     .bg{
       position:fixed;
       inset:0;
       z-index:-3;
-      overflow:hidden;
       background:#000;
+      overflow:hidden;
     }
     .bg video{
       position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:177.78vh;
+      height:100vh;
+      min-width:100vw;
+      min-height:56.25vw;
       object-fit:cover;
     }
+    /* readability overlay */
     .bg::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 50% 28%, rgba(0,0,0,.02), rgba(0,0,0,.68)),
-        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.76));
+        radial-gradient(900px 520px at 50% 25%, rgba(0,0,0,.05), rgba(0,0,0,.65)),
+        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.75));
       z-index:1;
       pointer-events:none;
     }
 
+    /* Push content toward the bottom */
     .wrap{
       min-height:100vh;
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:flex-start;
-      padding:56px 18px 28px;
-      gap:18px;
+      justify-content:flex-end;
+      padding:28px 16px 44px;
     }
 
+    /* Smaller window so more video shows */
     .panel{
-      width:min(920px, 92vw);
+      width:min(680px, 84vw);
       background: rgba(255,255,255,0.14);
       border: 1px solid rgba(255,255,255,0.22);
       border-radius: var(--radius);
@@ -71,14 +77,20 @@
       overflow:hidden;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+      margin-bottom: 12vh;
+    }
+
+    @media (max-width: 520px){
+      .panel{ width:92vw; margin-bottom: 10vh; }
+      .wrap{ padding:20px 12px 34px; }
     }
 
     .top{
-      padding:20px 22px 12px;
+      padding:18px 18px 10px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
       background: rgba(255,255,255,0.08);
       border-bottom: 1px solid rgba(255,255,255,.14);
@@ -87,42 +99,60 @@
     .brand{
       display:flex;
       align-items:center;
-      gap:14px;
-      min-width:260px;
+      gap:12px;
+      min-width:240px;
     }
+
     .logo{
-      width:62px;height:62px;border-radius:18px;
-      background: rgba(255,255,255,0.24);
-      border:1px solid rgba(255,255,255,.24);
-      display:grid;place-items:center;overflow:hidden;
-      box-shadow: 0 16px 34px rgba(0,0,0,.22);
+      width:58px;
+      height:58px;
+      border-radius:16px;
+      background: rgba(255,255,255,0.22);
+      border:1px solid rgba(255,255,255,.22);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
-    .logo img{width:100%;height:100%;object-fit:contain;transform:scale(1.06);}
-
-    .brand .kicker{
-      font-weight:900;
-      letter-spacing:.25px;
-      color:rgba(255,255,255,.78);
-      text-shadow: 0 10px 26px rgba(0,0,0,.40);
-      font-size:.9rem;
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      transform:scale(1.06);
     }
+
     .brand h1{
-      margin:4px 0 0;
-      font-size:1.3rem;
+      margin:0;
+      font-size:1.02rem;
       font-weight:900;
       letter-spacing:.2px;
-      color:rgba(255,255,255,.95);
-      text-shadow: 0 12px 32px rgba(0,0,0,.55);
+      color:rgba(255,255,255,.92);
+      text-shadow: 0 10px 26px rgba(0,0,0,.45);
+      line-height:1.1;
+    }
+    .brand p{
+      margin:6px 0 0;
+      font-size:.90rem;
+      font-weight:800;
+      color:rgba(255,255,255,.78);
+      text-shadow: 0 10px 26px rgba(0,0,0,.40);
     }
 
-    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:12px 14px;
+      padding:11px 13px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.26);
       background: rgba(255,255,255,0.28);
@@ -146,121 +176,79 @@
       color:#fff;
     }
 
-    .content{padding:18px 22px 10px;}
-    .title{margin:0;font-size:2.1rem;font-weight:900;letter-spacing:-.6px;text-shadow: 0 14px 38px rgba(0,0,0,.55);}
-    .desc{
-      margin:12px 0 0;
-      font-size:1.05rem;
+    .content{
+      padding:14px 18px 18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:1.9rem;
+      font-weight:900;
+      letter-spacing:-.6px;
+      line-height:1.05;
+      text-shadow: 0 14px 38px rgba(0,0,0,.55);
+    }
+    .subtitle{
+      margin:10px 0 0;
+      font-size:1.02rem;
       font-weight:800;
+      color:rgba(255,255,255,.84);
       line-height:1.45;
-      color:rgba(255,255,255,.86);
+      max-width: 52ch;
       text-shadow: 0 12px 32px rgba(0,0,0,.55);
-      max-width: 76ch;
     }
 
-    .grid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width: 880px){ .grid{grid-template-columns:1fr;} .wrap{padding-top:40px;} .title{font-size:1.85rem;} }
-
-    .tile{
-      border-radius:18px;
-      background: rgba(255,255,255,0.20);
-      border:1px solid rgba(255,255,255,.20);
-      box-shadow: var(--cardShadow);
-      padding:14px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .tile strong{display:block;font-weight:900;font-size:1rem;margin-bottom:6px;}
-    .tile p{margin:0;color:rgba(255,255,255,.82);font-weight:800;line-height:1.35;font-size:.95rem;}
-
-    .backRow{
-      padding:16px 22px 18px;
-      display:flex;
-      justify-content:flex-start;
-      gap:10px;
-      flex-wrap:wrap;
-      border-top:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,0.08);
+    .note{
+      margin:14px 0 0;
+      font-size:.95rem;
+      font-weight:800;
+      color:rgba(255,255,255,.78);
+      text-shadow: 0 10px 26px rgba(0,0,0,.55);
     }
 
     footer{
-      margin-top:14px;
-      padding:14px 22px 18px;
+      padding:14px 18px 16px;
       border-top:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,0.10);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:14px;
+      gap:12px;
       flex-wrap:wrap;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
-    footer .left{display:flex;flex-direction:column;gap:6px}
-    footer .right{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .link{color:rgba(255,255,255,.94);font-weight:900;text-decoration:none;text-shadow: 0 10px 26px rgba(0,0,0,.55);}
-    .link:hover{text-decoration:underline;}
-    .fallback{
-      display:none;
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(0,0,0,.30);
-      color: rgba(255,255,255,.92);
-      font-weight:800;
-      max-width: 70ch;
+
+    .left{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
     }
-    .fallback.show{display:block;}
-/* ===== Twilight page cleanup ===== */
+    .muted{
+      color:rgba(255,255,255,.82);
+      font-weight:900;
+      text-shadow: 0 10px 26px rgba(0,0,0,.45);
+    }
+    .link{
+      color:rgba(255,255,255,.94);
+      font-weight:900;
+      text-decoration:none;
+      text-shadow: 0 10px 26px rgba(0,0,0,.55);
+    }
+    .link:hover{ text-decoration:underline; }
 
-/* Make the main content panel narrower + a bit more transparent */
-.panel{
-  width: min(760px, 88vw) !important;
-  background: rgba(255,255,255,0.12) !important;
-}
-
-/* Reduce top padding so you see more of the video */
-.wrap{
-  padding: 44px 16px 28px !important;
-}
-
-/* Calm down the info boxes */
-.glassBox{
-  background: rgba(255,255,255,0.18) !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-}
-
-/* Hide the “pills / bullet chips” section if your page has them */
-.pillRow, .pill{
-  display: none !important;
-}
-
-/* If you have service “cards/squares” on the service page, hide them too */
-.grid, .card{
-  display: none !important;
-}
-
-/* Make the description feel cleaner */
-.headline h2{
-  font-size: 2.05rem !important;
-}
-.headline p{
-  font-size: 1.02rem !important;
-  line-height: 1.45 !important;
-  max-width: 52ch !important;
-}
-
+    .right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
   </style>
 </head>
+
 <body>
   <div class="bg" aria-hidden="true">
-    <video class="bgvid" autoplay muted loop playsinline preload="metadata">
+    <video autoplay muted loop playsinline preload="auto">
       <source src="assets/videos/twilight.mp4" type="video/mp4" />
     </video>
   </div>
@@ -269,10 +257,12 @@
     <main class="panel">
       <section class="top">
         <div class="brand">
-          <div class="logo"><img src="logo.png" alt="SkyDawgs Logo"></div>
+          <div class="logo">
+            <img src="logo.png" alt="SkyDawgs Drone Services Logo">
+          </div>
           <div>
-            <div class="kicker">SkyDawgs Drone Services</div>
-            <h1>Twilight / Golden Hour</h1>
+            <h1>SkyDawgs Drone Services</h1>
+            <p>Twilight / Golden Hour</p>
           </div>
         </div>
 
@@ -284,57 +274,29 @@
 
       <section class="content">
         <h2 class="title">Twilight / Golden Hour</h2>
-        <p class="desc">Twilight and golden-hour visuals hit different. We capture warm, dramatic lighting and smooth motion that makes properties and brands look high-end and cinematic.</p>
-        <div id="fallback" class="fallback">
-          Video loading tip: make sure <strong>assets/videos/twilight.mp4</strong> exists in your repo (see assets/videos/README.txt).
-        </div>
-
-        <div class="grid">
-        <div class="tile"><strong>Premium Light</strong><p>Golden-hour warmth or twilight glow for a luxury feel.</p></div>
-        <div class="tile"><strong>Smooth Motion</strong><p>Slow, stable moves that feel cinematic—not shaky.</p></div>
-        <div class="tile"><strong>Social-First Edits</strong><p>Short clips that pop on Reels, Shorts, and TikTok.</p></div>
-        </div>
+        <p class="subtitle">
+          The best light of the day makes everything look premium. We plan the timing, angles, and movement to capture
+          warm highlights, deep contrast, and that cinematic glow clients remember.
+        </p>
+        <p class="note">
+          Ideal for homes, land, businesses, special locations, and “wow” reveal shots.
+        </p>
       </section>
-
-      <div class="backRow">
-        <a class="btn" href="index.html">Back to Services</a>
-      </div>
 
       <footer>
         <div class="left">
-          <div style="font-weight:900;opacity:.85;">Contact</div>
+          <div class="muted">Contact</div>
           <div><a class="link" href="tel:7623953268">762.395.3268</a></div>
           <div><a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a></div>
         </div>
+
         <div class="right">
+          <a class="btn" href="index.html">Back to Services</a>
           <a class="btn" href="https://www.instagram.com/sky.dawgs?igsh=MTI5a2VpamdvMDBjdw==" target="_blank" rel="noopener">Instagram</a>
           <a class="btn" href="https://vimeo.com/user244846590" target="_blank" rel="noopener">Vimeo</a>
         </div>
       </footer>
     </main>
   </div>
-
-  <script>
-    (function() {
-      const v = document.querySelector('.bgvid');
-      const fb = document.getElementById('fallback');
-      let shown = false;
-      const show = () => { if (!shown) { fb.classList.add('show'); shown = true; } };
-      const hide = () => { fb.classList.remove('show'); };
-      // If it hasn't started within 1.5s, show a helpful hint (common when file missing)
-      setTimeout(() => {
-        try {
-          if (!v || v.readyState < 2) show();
-        } catch(e){ show(); }
-      }, 1500);
-      if (v) {
-        v.addEventListener('canplay', hide);
-        v.addEventListener('playing', hide);
-        v.addEventListener('error', show);
-      } else {
-        show();
-      }
-    })();
-  </script>
 </body>
 </html>
