@@ -217,6 +217,44 @@
       max-width: 70ch;
     }
     .fallback.show{display:block;}
+/* ===== Twilight page cleanup ===== */
+
+/* Make the main content panel narrower + a bit more transparent */
+.panel{
+  width: min(760px, 88vw) !important;
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* Reduce top padding so you see more of the video */
+.wrap{
+  padding: 44px 16px 28px !important;
+}
+
+/* Calm down the info boxes */
+.glassBox{
+  background: rgba(255,255,255,0.18) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+/* Hide the “pills / bullet chips” section if your page has them */
+.pillRow, .pill{
+  display: none !important;
+}
+
+/* If you have service “cards/squares” on the service page, hide them too */
+.grid, .card{
+  display: none !important;
+}
+
+/* Make the description feel cleaner */
+.headline h2{
+  font-size: 2.05rem !important;
+}
+.headline p{
+  font-size: 1.02rem !important;
+  line-height: 1.45 !important;
+  max-width: 52ch !important;
+}
 
   </style>
 </head>
