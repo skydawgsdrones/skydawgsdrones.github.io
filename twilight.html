@@ -11,9 +11,8 @@
 
   <style>
     :root{
-      --green:#1F5F3A;
-      --shadow: 0 26px 90px rgba(0,0,0,.38);
-      --radius:24px;
+      --radius:22px;
+      --shadow: 0 26px 80px rgba(0,0,0,.38);
     }
 
     *{ box-sizing:border-box; }
@@ -26,13 +25,13 @@
       overflow-x:hidden;
     }
 
-    /* Full-screen video background */
+    /* ===== Fullscreen Video Background ===== */
     .bg{
       position:fixed;
       inset:0;
       z-index:-3;
-      background:#000;
       overflow:hidden;
+      background:#000;
     }
     .bg video{
       position:absolute;
@@ -45,220 +44,195 @@
       min-height:56.25vw;
       object-fit:cover;
     }
-    /* readability overlay */
     .bg::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 50% 25%, rgba(0,0,0,.05), rgba(0,0,0,.65)),
-        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.75));
+        radial-gradient(900px 520px at 50% 28%, rgba(0,0,0,.04), rgba(0,0,0,.60)),
+        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.70));
       z-index:1;
       pointer-events:none;
     }
 
-    /* Push content toward the bottom */
+    /* ===== Layout ===== */
     .wrap{
       min-height:100vh;
       display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-end;
-      padding:28px 16px 44px;
+      align-items:flex-end;
+      justify-content:center;
+      padding:22px 16px 42px;
     }
 
-    /* Smaller window so more video shows */
+    /* SHORTER + WIDER PANEL */
     .panel{
-      width:min(680px, 84vw);
+      width:min(960px, 94vw);
       background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      margin-bottom: 12vh;
+      margin-bottom:10vh;
+      overflow:hidden;
     }
 
-    @media (max-width: 520px){
-      .panel{ width:92vw; margin-bottom: 10vh; }
-      .wrap{ padding:20px 12px 34px; }
+    @media (max-width:600px){
+      .panel{
+        width:94vw;
+        margin-bottom:8vh;
+      }
     }
 
+    /* ===== Top Bar ===== */
     .top{
-      padding:18px 18px 10px;
+      padding:14px 18px 8px;
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
       gap:12px;
       flex-wrap:wrap;
       background: rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,.14);
+      border-bottom:1px solid rgba(255,255,255,.14);
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:240px;
     }
-
     .logo{
-      width:58px;
-      height:58px;
-      border-radius:16px;
+      width:54px;
+      height:54px;
+      border-radius:14px;
       background: rgba(255,255,255,0.22);
       border:1px solid rgba(255,255,255,.22);
       display:grid;
       place-items:center;
       overflow:hidden;
-      flex:0 0 auto;
-      box-shadow: 0 14px 30px rgba(0,0,0,.22);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
     }
     .logo img{
       width:100%;
       height:100%;
       object-fit:contain;
-      transform:scale(1.06);
     }
 
     .brand h1{
       margin:0;
-      font-size:1.02rem;
+      font-size:1rem;
       font-weight:900;
-      letter-spacing:.2px;
-      color:rgba(255,255,255,.92);
-      text-shadow: 0 10px 26px rgba(0,0,0,.45);
-      line-height:1.1;
     }
     .brand p{
-      margin:6px 0 0;
-      font-size:.90rem;
-      font-weight:800;
-      color:rgba(255,255,255,.78);
-      text-shadow: 0 10px 26px rgba(0,0,0,.40);
+      margin:4px 0 0;
+      font-size:.85rem;
+      font-weight:700;
+      opacity:.85;
     }
 
     .ctaRow{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
     }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:11px 13px;
-      border-radius:16px;
+      padding:10px 14px;
+      border-radius:14px;
       border:1px solid rgba(255,255,255,.26);
-      background: rgba(255,255,255,0.28);
-      color:rgba(255,255,255,.95);
+      background: rgba(255,255,255,0.30);
+      color:#fff;
       font-weight:900;
       text-decoration:none;
-      transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
-      box-shadow: 0 14px 30px rgba(0,0,0,.20);
-      white-space:nowrap;
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      transition:background .15s ease, transform .15s ease;
     }
     .btn:hover{
+      background: rgba(255,255,255,0.40);
       transform:translateY(-1px);
-      background: rgba(255,255,255,0.38);
-      box-shadow: 0 20px 42px rgba(0,0,0,.28);
     }
     .btnPrimary{
-      background: linear-gradient(180deg, rgba(44,122,75,.94), rgba(31,95,58,.98));
+      background: linear-gradient(180deg, rgba(44,122,75,.95), rgba(31,95,58,.98));
       border-color: rgba(255,255,255,.18);
-      color:#fff;
     }
 
+    /* ===== Main Content (SHORTER) ===== */
     .content{
-      padding:14px 18px 18px;
+      padding:10px 22px 12px;
     }
 
     .title{
       margin:0;
-      font-size:1.9rem;
+      font-size:1.7rem;
       font-weight:900;
-      letter-spacing:-.6px;
+      letter-spacing:-.5px;
       line-height:1.05;
-      text-shadow: 0 14px 38px rgba(0,0,0,.55);
     }
+
     .subtitle{
-      margin:10px 0 0;
-      font-size:1.02rem;
+      margin:6px 0 0;
+      font-size:1rem;
       font-weight:800;
-      color:rgba(255,255,255,.84);
       line-height:1.45;
-      max-width: 52ch;
-      text-shadow: 0 12px 32px rgba(0,0,0,.55);
+      max-width:58ch;
+      opacity:.9;
     }
 
     .note{
-      margin:14px 0 0;
-      font-size:.95rem;
-      font-weight:800;
-      color:rgba(255,255,255,.78);
-      text-shadow: 0 10px 26px rgba(0,0,0,.55);
+      margin:8px 0 0;
+      font-size:.92rem;
+      font-weight:700;
+      opacity:.8;
     }
 
+    /* ===== Footer ===== */
     footer{
-      padding:14px 18px 16px;
+      padding:12px 18px 14px;
       border-top:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,0.10);
       display:flex;
-      align-items:flex-start;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .left{
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:4px;
+      font-size:.9rem;
+      font-weight:800;
     }
-    .muted{
-      color:rgba(255,255,255,.82);
-      font-weight:900;
-      text-shadow: 0 10px 26px rgba(0,0,0,.45);
-    }
-    .link{
-      color:rgba(255,255,255,.94);
-      font-weight:900;
-      text-decoration:none;
-      text-shadow: 0 10px 26px rgba(0,0,0,.55);
-    }
-    .link:hover{ text-decoration:underline; }
-
     .right{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      justify-content:flex-end;
     }
+
+    .link{
+      color:#fff;
+      text-decoration:none;
+    }
+    .link:hover{ text-decoration:underline; }
   </style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true">
+  <!-- Background Video -->
+  <div class="bg">
     <video autoplay muted loop playsinline preload="auto">
-      <source src="assets/videos/twilight.mp4" type="video/mp4" />
+      <source src="assets/videos/twilight.mp4" type="video/mp4">
     </video>
   </div>
 
   <div class="wrap">
     <main class="panel">
+      <!-- Top -->
       <section class="top">
         <div class="brand">
           <div class="logo">
-            <img src="logo.png" alt="SkyDawgs Drone Services Logo">
+            <img src="logo.png" alt="SkyDawgs Drone Services">
           </div>
           <div>
             <h1>SkyDawgs Drone Services</h1>
@@ -267,33 +241,35 @@
         </div>
 
         <div class="ctaRow">
-          <a class="btn" href="tel:7623953268">Call: 762.395.3268</a>
+          <a class="btn" href="tel:7623953268">Call 762.395.3268</a>
           <a class="btn btnPrimary" href="book-flight.html">Book a Flight</a>
         </div>
       </section>
 
+      <!-- Content -->
       <section class="content">
         <h2 class="title">Twilight / Golden Hour</h2>
         <p class="subtitle">
-          The best light of the day makes everything look premium. We plan the timing, angles, and movement to capture
-          warm highlights, deep contrast, and that cinematic glow clients remember.
+          The most cinematic light of the day. We plan timing, angles, and movement
+          to capture warm highlights, deep contrast, and premium atmosphere.
         </p>
         <p class="note">
-          Ideal for homes, land, businesses, special locations, and “wow” reveal shots.
+          Perfect for properties, land, businesses, and dramatic reveal shots.
         </p>
       </section>
 
+      <!-- Footer -->
       <footer>
         <div class="left">
-          <div class="muted">Contact</div>
-          <div><a class="link" href="tel:7623953268">762.395.3268</a></div>
-          <div><a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a></div>
+          <span>Contact</span>
+          <a class="link" href="tel:7623953268">762.395.3268</a>
+          <a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a>
         </div>
 
         <div class="right">
           <a class="btn" href="index.html">Back to Services</a>
-          <a class="btn" href="https://www.instagram.com/sky.dawgs?igsh=MTI5a2VpamdvMDBjdw==" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn" href="https://vimeo.com/user244846590" target="_blank" rel="noopener">Vimeo</a>
+          <a class="btn" href="https://www.instagram.com/sky.dawgs?igsh=MTI5a2VpamdvMDBjdw==" target="_blank">Instagram</a>
+          <a class="btn" href="https://vimeo.com/user244846590" target="_blank">Vimeo</a>
         </div>
       </footer>
     </main>
