@@ -61,10 +61,10 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      padding:22px 16px 42px;
+      padding:20px 16px 36px;
     }
 
-    /* SHORTER + WIDER PANEL */
+    /* LOWER + WIDER PANEL */
     .panel{
       width:min(960px, 94vw);
       background: rgba(255,255,255,0.14);
@@ -73,25 +73,23 @@
       box-shadow:var(--shadow);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      margin-bottom:10vh;
+      margin-bottom:6vh;   /* LOWER than before */
       overflow:hidden;
     }
 
     @media (max-width:600px){
       .panel{
         width:94vw;
-        margin-bottom:8vh;
+        margin-bottom:5vh;
       }
     }
 
     /* ===== Top Bar ===== */
     .top{
-      padding:14px 18px 8px;
+      padding:14px 18px 10px;
       display:flex;
-      justify-content:space-between;
       align-items:center;
       gap:12px;
-      flex-wrap:wrap;
       background: rgba(255,255,255,0.08);
       border-bottom:1px solid rgba(255,255,255,.14);
     }
@@ -130,33 +128,7 @@
       opacity:.85;
     }
 
-    .ctaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.26);
-      background: rgba(255,255,255,0.30);
-      color:#fff;
-      font-weight:900;
-      text-decoration:none;
-      backdrop-filter: blur(14px);
-      transition:background .15s ease, transform .15s ease;
-    }
-    .btn:hover{
-      background: rgba(255,255,255,0.40);
-      transform:translateY(-1px);
-    }
-    .btnPrimary{
-      background: linear-gradient(180deg, rgba(44,122,75,.95), rgba(31,95,58,.98));
-      border-color: rgba(255,255,255,.18);
-    }
-
-    /* ===== Main Content (SHORTER) ===== */
+    /* ===== Main Content ===== */
     .content{
       padding:10px 22px 12px;
     }
@@ -210,6 +182,22 @@
       flex-wrap:wrap;
     }
 
+    .btn{
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.26);
+      background: rgba(255,255,255,0.30);
+      color:#fff;
+      font-weight:900;
+      text-decoration:none;
+      backdrop-filter: blur(14px);
+      transition:background .15s ease, transform .15s ease;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,0.40);
+      transform:translateY(-1px);
+    }
+
     .link{
       color:#fff;
       text-decoration:none;
@@ -238,11 +226,6 @@
             <h1>SkyDawgs Drone Services</h1>
             <p>Twilight / Golden Hour</p>
           </div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn" href="tel:7623953268">Call 762.395.3268</a>
-          <a class="btn btnPrimary" href="book-flight.html">Book a Flight</a>
         </div>
       </section>
 
