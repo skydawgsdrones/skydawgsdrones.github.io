@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Search & Rescue • SkyDawgs Drone Services</title>
+  <title>Lost Pet Recovery | SkyDawgs Drone Services</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,22 +11,20 @@
 
   <style>
     :root{
-      --green:#1F5F3A;
-      --radius:24px;
-      --shadow: 0 26px 90px rgba(0,0,0,.38);
-      --cardShadow: 0 18px 45px rgba(0,0,0,.22);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#000;
-      overflow-x:hidden;
-      color:rgba(255,255,255,.92);
+      --radius:22px;
+      --shadow: 0 26px 80px rgba(0,0,0,.38);
     }
 
-    /* Full-screen local MP4 background */
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Montserrat", system-ui, -apple-system;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
     .bg{
       position:fixed;
       inset:0;
@@ -36,9 +34,13 @@
     }
     .bg video{
       position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:177.78vh;
+      height:100vh;
+      min-width:100vw;
+      min-height:56.25vw;
       object-fit:cover;
     }
     .bg::after{
@@ -46,257 +48,195 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 50% 28%, rgba(0,0,0,.02), rgba(0,0,0,.68)),
-        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.76));
+        radial-gradient(900px 520px at 50% 28%, rgba(0,0,0,.04), rgba(0,0,0,.60)),
+        linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.70));
       z-index:1;
-      pointer-events:none;
     }
 
     .wrap{
       min-height:100vh;
       display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      padding:56px 18px 28px;
-      gap:18px;
+      align-items:flex-end;
+      justify-content:center;
+      padding:20px 16px 36px;
     }
 
     .panel{
-      width:min(920px, 92vw);
+      width:min(960px, 94vw);
       background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      margin-bottom:6vh;
+      overflow:hidden;
     }
 
     .top{
-      padding:20px 22px 12px;
+      padding:14px 18px 10px;
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      gap:12px;
       background: rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,.14);
+      border-bottom:1px solid rgba(255,255,255,.14);
     }
 
     .brand{
       display:flex;
+      gap:12px;
       align-items:center;
-      gap:14px;
-      min-width:260px;
     }
     .logo{
-      width:62px;height:62px;border-radius:18px;
-      background: rgba(255,255,255,0.24);
-      border:1px solid rgba(255,255,255,.24);
-      display:grid;place-items:center;overflow:hidden;
-      box-shadow: 0 16px 34px rgba(0,0,0,.22);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      width:54px;
+      height:54px;
+      border-radius:14px;
+      background: rgba(255,255,255,0.22);
+      border:1px solid rgba(255,255,255,.22);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
     }
-    .logo img{width:100%;height:100%;object-fit:contain;transform:scale(1.06);}
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
 
-    .brand .kicker{
-      font-weight:900;
-      letter-spacing:.25px;
-      color:rgba(255,255,255,.78);
-      text-shadow: 0 10px 26px rgba(0,0,0,.40);
-      font-size:.9rem;
-    }
     .brand h1{
+      margin:0;
+      font-size:1rem;
+      font-weight:900;
+    }
+    .brand p{
       margin:4px 0 0;
-      font-size:1.3rem;
-      font-weight:900;
-      letter-spacing:.2px;
-      color:rgba(255,255,255,.95);
-      text-shadow: 0 12px 32px rgba(0,0,0,.55);
+      font-size:.85rem;
+      font-weight:700;
+      opacity:.85;
     }
 
-    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.26);
-      background: rgba(255,255,255,0.28);
-      color:rgba(255,255,255,.95);
-      font-weight:900;
-      text-decoration:none;
-      transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
-      box-shadow: 0 14px 30px rgba(0,0,0,.20);
-      white-space:nowrap;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      background: rgba(255,255,255,0.38);
-      box-shadow: 0 20px 42px rgba(0,0,0,.28);
-    }
-    .btnPrimary{
-      background: linear-gradient(180deg, rgba(44,122,75,.94), rgba(31,95,58,.98));
-      border-color: rgba(255,255,255,.18);
-      color:#fff;
+    .content{
+      padding:10px 22px 12px;
     }
 
-    .content{padding:18px 22px 10px;}
-    .title{margin:0;font-size:2.1rem;font-weight:900;letter-spacing:-.6px;text-shadow: 0 14px 38px rgba(0,0,0,.55);}
-    .desc{
-      margin:12px 0 0;
-      font-size:1.05rem;
+    .title{
+      margin:0;
+      font-size:1.7rem;
+      font-weight:900;
+      letter-spacing:-.5px;
+    }
+
+    .subtitle{
+      margin:6px 0 0;
+      font-size:1rem;
       font-weight:800;
       line-height:1.45;
-      color:rgba(255,255,255,.86);
-      text-shadow: 0 12px 32px rgba(0,0,0,.55);
-      max-width: 76ch;
+      max-width:60ch;
+      opacity:.92;
     }
 
-    .grid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width: 880px){ .grid{grid-template-columns:1fr;} .wrap{padding-top:40px;} .title{font-size:1.85rem;} }
-
-    .tile{
-      border-radius:18px;
-      background: rgba(255,255,255,0.20);
-      border:1px solid rgba(255,255,255,.20);
-      box-shadow: var(--cardShadow);
-      padding:14px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-    .tile strong{display:block;font-weight:900;font-size:1rem;margin-bottom:6px;}
-    .tile p{margin:0;color:rgba(255,255,255,.82);font-weight:800;line-height:1.35;font-size:.95rem;}
-
-    .backRow{
-      padding:16px 22px 18px;
-      display:flex;
-      justify-content:flex-start;
-      gap:10px;
-      flex-wrap:wrap;
-      border-top:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,0.08);
+    .note{
+      margin:10px 0 0;
+      font-size:.95rem;
+      font-weight:700;
+      opacity:.85;
     }
 
     footer{
-      margin-top:14px;
-      padding:14px 22px 18px;
+      padding:12px 18px 14px;
       border-top:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,0.10);
       display:flex;
-      align-items:flex-start;
       justify-content:space-between;
-      gap:14px;
       flex-wrap:wrap;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      gap:12px;
     }
-    footer .left{display:flex;flex-direction:column;gap:6px}
-    footer .right{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .link{color:rgba(255,255,255,.94);font-weight:900;text-decoration:none;text-shadow: 0 10px 26px rgba(0,0,0,.55);}
-    .link:hover{text-decoration:underline;}
-    .fallback{
-      display:none;
-      margin-top:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.22);
-      background: rgba(0,0,0,.30);
-      color: rgba(255,255,255,.92);
-      font-weight:800;
-      max-width: 70ch;
-    }
-    .fallback.show{display:block;}
 
+    .left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      font-size:.9rem;
+      font-weight:800;
+    }
+
+    .right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.26);
+      background: rgba(255,255,255,0.30);
+      color:#fff;
+      font-weight:900;
+      text-decoration:none;
+    }
+
+    .link{
+      color:#fff;
+      text-decoration:none;
+    }
+    .link:hover{ text-decoration:underline; }
   </style>
 </head>
+
 <body>
-  <div class="bg" aria-hidden="true">
-    <video class="bgvid" autoplay muted loop playsinline preload="metadata">
-      <source src="assets/videos/rescue.mp4" type="video/mp4" />
+
+  <div class="bg">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/videos/twilight.mp4" type="video/mp4">
     </video>
   </div>
 
   <div class="wrap">
     <main class="panel">
+
       <section class="top">
         <div class="brand">
-          <div class="logo"><img src="logo.png" alt="SkyDawgs Logo"></div>
-          <div>
-            <div class="kicker">SkyDawgs Drone Services</div>
-            <h1>Search & Rescue</h1>
+          <div class="logo">
+            <img src="logo.png" alt="SkyDawgs Drone Services">
           </div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn" href="tel:7623953268">Call: 762.395.3268</a>
-          <a class="btn btnPrimary" href="book-flight.html">Book a Flight</a>
+          <div>
+            <h1>SkyDawgs Drone Services</h1>
+            <p>Lost Pet Recovery</p>
+          </div>
         </div>
       </section>
 
       <section class="content">
-        <h2 class="title">Search & Rescue</h2>
-        <p class="desc">We can assist with basic visual search support today, and we’re actively upgrading to be more capable in this field. At this time we do not offer thermal capabilities yet—those are coming soon. We can also help aid in recovery of deer and other game during hunting season (thermal capability planned).</p>
-        <div id="fallback" class="fallback">
-          Video loading tip: make sure <strong>assets/videos/rescue.mp4</strong> exists in your repo (see assets/videos/README.txt).
-        </div>
+        <h2 class="title">Lost Pet Recovery</h2>
+        <p class="subtitle">
+          When a beloved pet goes missing, time and visibility matter.
+          Our aerial perspective helps cover large areas quickly, providing
+          real-time visual scanning across fields, woods, neighborhoods,
+          and hard-to-access terrain.
+        </p>
 
-        <div class="grid">
-        <div class="tile"><strong>Basic Visual Aid</strong><p>Aerial visibility to help scan larger areas faster.</p></div>
-        <div class="tile"><strong>Upgrades in Progress</strong><p>Thermal capability is planned and will be added soon.</p></div>
-        <div class="tile"><strong>Hunting Season Recovery</strong><p>Support for locating deer/other game (thermal planned).</p></div>
-        </div>
+        <p class="note">
+          Thermal capability upgrades are in progress and coming soon.
+          Currently offering visual search assistance only.
+        </p>
       </section>
-
-      <div class="backRow">
-        <a class="btn" href="index.html">Back to Services</a>
-      </div>
 
       <footer>
         <div class="left">
-          <div style="font-weight:900;opacity:.85;">Contact</div>
-          <div><a class="link" href="tel:7623953268">762.395.3268</a></div>
-          <div><a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a></div>
+          <span>Contact</span>
+          <a class="link" href="tel:7623953268">762.395.3268</a>
+          <a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a>
         </div>
+
         <div class="right">
-          <a class="btn" href="https://www.instagram.com/sky.dawgs?igsh=MTI5a2VpamdvMDBjdw==" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn" href="https://vimeo.com/user244846590" target="_blank" rel="noopener">Vimeo</a>
+          <a class="btn" href="index.html">Back to Services</a>
+          <a class="btn" href="https://www.instagram.com/sky.dawgs" target="_blank">Instagram</a>
+          <a class="btn" href="https://vimeo.com/user244846590" target="_blank">Vimeo</a>
+          <a class="btn" href="#">Facebook</a>
         </div>
       </footer>
+
     </main>
   </div>
 
-  <script>
-    (function() {
-      const v = document.querySelector('.bgvid');
-      const fb = document.getElementById('fallback');
-      let shown = false;
-      const show = () => { if (!shown) { fb.classList.add('show'); shown = true; } };
-      const hide = () => { fb.classList.remove('show'); };
-      // If it hasn't started within 1.5s, show a helpful hint (common when file missing)
-      setTimeout(() => {
-        try {
-          if (!v || v.readyState < 2) show();
-        } catch(e){ show(); }
-      }, 1500);
-      if (v) {
-        v.addEventListener('canplay', hide);
-        v.addEventListener('playing', hide);
-        v.addEventListener('error', show);
-      } else {
-        show();
-      }
-    })();
-  </script>
 </body>
 </html>
