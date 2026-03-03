@@ -348,10 +348,30 @@
 
     .link{ color:rgba(255,255,255,.94); font-weight:900; text-decoration:none; text-shadow: 0 10px 26px rgba(0,0,0,.55); }
     .link:hover{ text-decoration:underline; }
- .cards { position: relative; z-index: 2; }
-.card  { position: relative; z-index: 3; display: block; }
-.card *{ pointer-events: none; }
-  </style>
+.cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:28px;
+  position:relative;
+  z-index:2;
+}
+.card{
+  display:block;
+  position:relative;
+  z-index:3;
+  padding:32px 24px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.25);
+  text-decoration:none;
+  color:#fff;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,0.25);
+}
 </head>
 
 <body>
