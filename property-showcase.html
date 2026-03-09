@@ -1,175 +1,299 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Property Showcase | SkyDawgs Drone Services</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Real Estate Media | SkyDawgs Drone Services</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-<style>
-:root{ --radius:22px; --shadow:0 26px 80px rgba(0,0,0,.38); }
-*{box-sizing:border-box} html,body{height:100%}
-body{margin:0;font-family:Montserrat,system-ui;background:#000;color:#fff;overflow-x:hidden}
+  <style>
+    :root{
+      --green:#1F5F3A;
+      --text:#163325;
+      --cream:#F7F3E8;
+      --radius:24px;
+      --shadow: 0 26px 90px rgba(0,0,0,.18);
+      --cardShadow: 0 18px 45px rgba(0,0,0,.14);
+    }
 
-.bg{position:fixed;inset:0;z-index:-3;overflow:hidden;background:#000}
-.bg video{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:177.78vh;height:100vh;
-  min-width:100vw;min-height:56.25vw;
-  object-fit:cover
-}
-.bg::after{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(900px 520px at 50% 28%, rgba(0,0,0,.04), rgba(0,0,0,.60)),
-    linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.70));
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--cream) 0%, #ffffff 55%, var(--cream) 100%);
+    }
 
-.wrap{
-  min-height:100vh;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding:20px 16px 36px
-}
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 64px}
 
-.panel{
-  width:min(960px,94vw);
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(18px);
-  margin-bottom:6vh;
-  overflow:hidden
-}
+    /* Header / Hero */
+    .hero{
+      border-radius: calc(var(--radius) + 10px);
+      background:
+        radial-gradient(1200px 450px at 20% 0%, rgba(31,95,58,.22), transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(31,95,58,.16), transparent 55%),
+        #fff;
+      box-shadow: var(--shadow);
+      padding: 34px 26px;
+      position: relative;
+      overflow:hidden;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 14px;
+      border-radius:999px;
+      background: rgba(31,95,58,.10);
+      font-weight:700;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    h1{margin:14px 0 10px;font-size:42px;line-height:1.05}
+    .sub{max-width:760px;font-size:16px;line-height:1.55;opacity:.92}
 
-.top{
-  padding:14px 18px 10px;
-  display:flex;
-  gap:12px;
-  background:rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.14)
-}
+    .metaRow{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:18px
+    }
+    .pill{
+      border:1px solid rgba(31,95,58,.18);
+      background: rgba(255,255,255,.85);
+      padding:10px 12px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+    }
 
-.brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:54px;height:54px;border-radius:14px;
-  background:rgba(255,255,255,.22);
-  border:1px solid rgba(255,255,255,.22);
-  display:grid;place-items:center;overflow:hidden
-}
-.logo img{width:100%;height:100%;object-fit:contain}
+    /* Section */
+    .sectionTitle{
+      margin:34px 0 14px;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} h1{font-size:34px} }
 
-.brand h1{margin:0;font-size:1rem;font-weight:900}
-.brand p{margin:4px 0 0;font-size:.85rem;font-weight:700;opacity:.85}
+    .card{
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--cardShadow);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(31,95,58,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(135deg, rgba(31,95,58,.08), transparent 55%);
+      pointer-events:none;
+    }
+    .cardInner{position:relative}
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.35px;
+      text-transform: uppercase;
+      padding:7px 10px;
+      border-radius: 999px;
+      background: rgba(31,95,58,.12);
+      margin-bottom:10px;
+    }
+    .price{
+      font-size:34px;
+      font-weight:900;
+      margin: 6px 0 8px;
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:18px;
+      font-weight:900;
+    }
+    ul{margin:0;padding-left:18px}
+    li{margin:8px 0;line-height:1.45}
+    .fine{
+      margin-top:12px;
+      font-size:12.5px;
+      opacity:.82;
+      line-height:1.45;
+    }
 
-.content{padding:10px 22px 12px}
-.title{margin:0;font-size:1.7rem;font-weight:900;letter-spacing:-.5px}
-.subtitle{
-  margin:6px 0 0;
-  font-size:1rem;
-  font-weight:800;
-  line-height:1.45;
-  max-width:58ch;
-  opacity:.9
-}
-.note{
-  margin:8px 0 0;
-  font-size:.92rem;
-  font-weight:700;
-  opacity:.8
-}
+    /* Callouts */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){ .twoCol{grid-template-columns:1fr} }
 
-footer{
-  padding:12px 18px 14px;
-  border-top:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.10);
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px
-}
+    .cta{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-weight:900;
+      border: 1px solid rgba(31,95,58,.25);
+      text-decoration:none;
+      background:#fff;
+    }
+    .btn.primary{
+      background: var(--green);
+      color:#fff;
+      border-color: rgba(31,95,58,.35);
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .noteBox{
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--cardShadow);
+      border:1px solid rgba(31,95,58,.10);
+      padding: 18px;
+    }
+    .noteBox h4{margin:0 0 10px;font-size:16px;font-weight:900}
+    .noteBox p{margin:0 0 10px;line-height:1.55;opacity:.92}
+    .noteBox .small{font-size:13px;opacity:.85}
 
-.left{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  font-size:.9rem;
-  font-weight:800
-}
-.right{display:flex;gap:10px;flex-wrap:wrap}
-
-.btn{
-  padding:10px 14px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.26);
-  background:rgba(255,255,255,.30);
-  color:#fff;
-  font-weight:900;
-  text-decoration:none
-}
-.link{color:#fff;text-decoration:none}
-.link:hover{text-decoration:underline}
-</style>
+    footer{
+      margin-top:28px;
+      font-size:12.5px;
+      opacity:.75;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-<div class="bg">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="assets/videos/twilight.mp4" type="video/mp4">
-  </video>
-</div>
+    <header class="hero">
+      <div class="kicker">Real Estate Media</div>
+      <h1>Listing-ready photo, drone, and video — delivered fast.</h1>
+      <p class="sub">
+        Clean MLS-ready edits, crisp aerials, and modern video cutdowns designed to help your listings stand out.
+        Delivered in <strong>24–48 hours</strong> with an easy online gallery + download link.
+      </p>
 
-<div class="wrap">
-  <main class="panel">
-
-    <section class="top">
-      <div class="brand">
-        <div class="logo">
-          <img src="logo.png" alt="SkyDawgs Drone Services">
-        </div>
-        <div>
-          <h1>SkyDawgs Drone Services</h1>
-          <p>Property Showcase</p>
-        </div>
+      <div class="metaRow">
+        <div class="pill">✅ MLS-Ready Editing</div>
+        <div class="pill">✅ Drone (FAA Part 107)</div>
+        <div class="pill">✅ Floor Plans Included</div>
+        <div class="pill">✅ 24–48 Hour Turnaround</div>
       </div>
+
+      <div class="cta">
+        <!-- Swap these links to your actual contact/booking method -->
+        <a class="btn primary" href="#packages">View Packages</a>
+        <a class="btn" href="tel:7623953268">Call / Text: 762.395.3268</a>
+      </div>
+    </header>
+
+    <h2 id="packages" class="sectionTitle">Packages</h2>
+
+    <section class="grid">
+      <!-- Starter -->
+      <article class="card">
+        <div class="cardInner">
+          <div class="badge">Starter</div>
+          <div class="price">$199</div>
+          <h3>Great for smaller homes & quick listings</h3>
+          <ul>
+            <li><strong>25</strong> edited <strong>MLS-ready</strong> photos (interior + exterior)</li>
+            <li><strong>Basic floor plan</strong></li>
+            <li>Delivered in <strong>24–48 hours</strong></li>
+            <li><strong>Online gallery + download link</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Pro -->
+      <article class="card">
+        <div class="cardInner">
+          <div class="badge">Pro</div>
+          <div class="price">$349</div>
+          <h3>Most popular — photos + drone</h3>
+          <ul>
+            <li><strong>40</strong> edited <strong>MLS-ready</strong> photos (interior + exterior)</li>
+            <li><strong>12</strong> edited <strong>drone photos</strong></li>
+            <li><strong>Basic floor plan</strong></li>
+            <li>Delivered in <strong>24–48 hours</strong></li>
+            <li><strong>Online gallery + download link</strong></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Plus -->
+      <article class="card">
+        <div class="cardInner">
+          <div class="badge">Plus</div>
+          <div class="price">$599</div>
+          <h3>Full media — photos, drone, and video</h3>
+          <ul>
+            <li><strong>40</strong> edited <strong>MLS-ready</strong> photos (interior + exterior)</li>
+            <li><strong>12</strong> edited <strong>drone photos</strong></li>
+            <li><strong>Basic floor plan</strong></li>
+            <li><strong>Walkthrough video</strong> (60–90 seconds)</li>
+            <li><strong>1 vertical teaser</strong> (ideal for Reels/Stories)</li>
+            <li>Delivered in <strong>24–48 hours</strong></li>
+            <li><strong>Online gallery + download link</strong></li>
+          </ul>
+        </div>
+      </article>
     </section>
 
-    <section class="content">
-      <h2 class="title">Property Showcase</h2>
-      <p class="subtitle">
-        Elevate your listings with cinematic aerial coverage that highlights scale,
-        layout, surroundings, and unique property features.
-      </p>
-      <p class="note">
-        Perfect for real estate agents, developers, land sales, and commercial properties.
-      </p>
+    <h2 class="sectionTitle">What’s included</h2>
+
+    <section class="twoCol">
+      <div class="noteBox">
+        <h4>Fast, clean, and consistent</h4>
+        <p>
+          Every package includes professional edits designed for MLS and marketing:
+          balanced color, straight verticals, and a clean, natural look.
+        </p>
+        <p class="small">
+          Drone flights are weather/airspace dependent and are always conducted in compliance with FAA rules.
+        </p>
+      </div>
+
+      <div class="noteBox">
+        <h4>Booking</h4>
+        <p class="small">
+          Want to book a shoot or ask a question? Call/text or use your preferred contact link.
+        </p>
+        <div class="cta" style="margin-top:10px">
+          <!-- Swap to your contact form / email / booking link -->
+          <a class="btn primary" href="tel:7623953268">Call / Text</a>
+          <a class="btn" href="mailto:rg330000@gmail.com">Email</a>
+        </div>
+      </div>
     </section>
 
     <footer>
-      <div class="left">
-        <span>Contact</span>
-        <a class="link" href="tel:7623953268">762.395.3268</a>
-        <a class="link" href="mailto:info@skydawgsdrones.com">info@skydawgsdrones.com</a>
-      </div>
-
-      <div class="right">
-        <a class="btn" href="index.html">Back to Services</a>
-        <a class="btn" href="https://www.instagram.com/sky.dawgs" target="_blank">Instagram</a>
-        <a class="btn" href="https://vimeo.com/user244846590" target="_blank">Vimeo</a>
-        <a class="btn" href="#">Facebook</a>
-      </div>
+      © <span id="year"></span> SkyDawgs Drone Services LLC
     </footer>
+  </div>
 
-  </main>
-</div>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
